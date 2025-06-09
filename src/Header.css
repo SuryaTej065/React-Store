@@ -1,0 +1,15 @@
+.App-Headr-Row{
+    display: flex;
+    justify-content: space-between;
+    background-color: aquamarine;
+
+}
+
+.App-Headr-Row div{
+    padding: 10x;
+    
+}
+.App-Headr-Row li{
+    display: inline;
+    padding: 5px;
+}
