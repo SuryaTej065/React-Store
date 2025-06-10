@@ -1,8 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { AppContext } from "./App";
 export default function Register() {
   const [user, setUser] = useState({});
+  const Navigate = useNavigate()
+  const { users, setUsers } = useContext(AppContext);
+  const handleSubmit = () => {
+    setUsers([...users, user]);
+    Navigate("/login")
+  };
   const [count, setCount] = useState(0);
   const [dic, setDic] = useState(0);
   const [a,setA] = useState(0);
@@ -24,7 +31,7 @@ export default function Register() {
   const updateCount = () => {
     setCount(count + 1);
   };
-  return (
+   return (
     <div>
       <h2>Register</h2>
       <p>
@@ -49,11 +56,11 @@ export default function Register() {
         />
       </p>
       <p>
-        <button>Submit</button>
+        <button onClick={handleSubmit}>Submit</button>
       </p>
       <hr />
       <p>
-        <Link to="/login">Aready a member? Login Here...</Link>
+        <Link to="/login">Already a member? Login Here...</Link>
       </p>
 <hr />
       <p>
@@ -74,7 +81,6 @@ export default function Register() {
 <p>
   {result}
 </p>
-
     </div>
   );
 }
