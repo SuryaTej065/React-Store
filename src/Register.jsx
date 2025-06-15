@@ -1,37 +1,25 @@
-import React from "react";
-import { Link,useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "./App";
+
 export default function Register() {
   const [user, setUser] = useState({});
-  const Navigate = useNavigate()
   const { users, setUsers } = useContext(AppContext);
+  const Navigate = useNavigate();
+
   const handleSubmit = () => {
-    setUsers([...users, user]);
-    Navigate("/login")
-  };
-  const [count, setCount] = useState(0);
-  const [dic, setDic] = useState(0);
-  const [a,setA] = useState(0);
-  const [b,setB] = useState(0);
-  
-  const [result,setResult] = useState()
-  const sum = () => {
-    setResult(Number(a) + Number(b))
-  }
+    // Check if email already exists
+    const exists = users.find(u => u.email === user.email);
+    if (exists) {
+      alert("User already exists");
+      return;
+    }
 
-  const updateDic = () => {
-    setDic(dic + 1);
+    setUsers([...users, user]); // Save in context + localStorage
+    Navigate("/login");
   };
 
-  const reduceDic = () => {
-    setDic(dic - 1);
-  };
-
-  const updateCount = () => {
-    setCount(count + 1);
-  };
-   return (
+  return (
     <div>
       <h2>Register</h2>
       <p>
@@ -43,44 +31,21 @@ export default function Register() {
       </p>
       <p>
         <input
-          type="text"
+          type="email"
+          placeholder="Enter Email"
           onChange={(e) => setUser({ ...user, email: e.target.value })}
-          placeholder="Enter Email Address"
         />
       </p>
       <p>
         <input
           type="password"
+          placeholder="Enter Password"
           onChange={(e) => setUser({ ...user, pass: e.target.value })}
-          placeholder="New Password"
         />
       </p>
-      <p>
-        <button onClick={handleSubmit}>Submit</button>
-      </p>
+      <button onClick={handleSubmit}>Submit</button>
       <hr />
-      <p>
-        <Link to="/login">Already a member? Login Here...</Link>
-      </p>
-<hr />
-      <p>
-        {count}<br></br>
-        <button onClick={updateCount}>Update Count</button>
-      </p>
-      <p>
-        {dic}<br></br>
-        <button onClick={updateDic}> + </button>
-        <button onClick={reduceDic}> - </button>
-      </p>
-
-<p>
-  <input type="number" onChange={(e) => setA(e.target.value)}/>
-  <input type="number" onChange={(e) => setB(e.target.value)}/>
-  <button onClick={sum}> ADD </button>
-</p>
-<p>
-  {result}
-</p>
+      <Link to="/login">Already a member? Login here...</Link>
     </div>
   );
 }

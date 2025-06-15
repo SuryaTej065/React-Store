@@ -8,7 +8,7 @@ export default function Order() {
       <h2>My Orders</h2>
       {orders.map((order) => (
         order.email === email &&
-        <div key={order.id}>{order.name}-{order.price}-{order.qty}-{order.qty*order.price}</div>
+        <div key={order.id}>Name:{order.name}  , Price:{order.price}  , Total Quantity:{order.qty} , Total Price:{order.qty*order.price}</div>
       ))}
     </div>
   );
