@@ -8,14 +8,14 @@ export default function Register() {
   const Navigate = useNavigate();
 
   const handleSubmit = () => {
-    // Check if email already exists
+
     const exists = users.find(u => u.email === user.email);
     if (exists) {
       alert("User already exists");
       return;
     }
 
-    setUsers([...users, user]); // Save in context + localStorage
+    setUsers([...users, user]);
     Navigate("/login");
   };
 

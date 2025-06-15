@@ -1,4 +1,3 @@
-/* Make sure these are present */
 html, body, #root {
   height: 100%;
   margin: 0;
@@ -6,14 +5,12 @@ html, body, #root {
   
 }
 
-/* This wraps everything inside App.jsx */
 .App {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* ensures full screen height */
+  min-height: 100vh;
 }
 
-/* This pushes the footer to the bottom */
 .App > .App-Footer-Row {
   margin-top: auto;
 }

@@ -6,12 +6,12 @@ export default function Test() {
   const f1 = () => {
     let i;
     for (i = 1; i < flag ** 2; i++) {
-      //complex calculation
+        
     }
     console.log("F1 function called");
     return i;
   };
-    // const result = f1();
+
   const result = useMemo(() => f1(), [flag]);
   return (
     <div>
